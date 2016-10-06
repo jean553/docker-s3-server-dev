@@ -55,10 +55,11 @@ var s3rver = new S3rver(
                             if ( err ) {
                                 return err;
                             }
-
-                            s3Client.createBucket(
-                                { Bucket : bucket_name }
-                            );
+                            if ( bucket_name && bucket_name !== '' ) {
+                                s3Client.createBucket(
+                                    { Bucket : bucket_name }
+                                );
+                            }
                         }
                     );
                 }
