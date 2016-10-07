@@ -3,19 +3,21 @@
 
 var AWS = require('aws-sdk');
 
-// Create an S3 client
-var endpoint = new AWS.Endpoint('http://s3:5000');
+var endpoint = new AWS.Endpoint('http://0.0.0.0:5000');
+
 // Set some dummy credentials
 var credentials = new AWS.Credentials(
     {
-        accessKeyId: 'dummy_value_cannot_be_none',
-        secretAccessKey: 'dummy_value_cannot_be_none'
+        accessKeyId : 'dummy_value_cannot_be_none',
+        secretAccessKey : 'dummy_value_cannot_be_none'
     }
 );
+// Create an S3 client
 var s3 = new AWS.S3(
     {
-        endpoint: endpoint,
-        credentials: credentials
+        endpoint : endpoint,
+        credentials : credentials,
+        s3ForcePathStyle: true      // Force client to look for hostname/my_bucket instead of my_bucket.hostname
     }
 );
 
@@ -30,7 +32,7 @@ if (bucket_name && bucket_name != null)
                 console.log("Bucket " + bucket_name + " created");
             }
             else {
-                console.log("Can't create bucket " + bucket_name + ": " + error.code)
+                console.log("Can't create bucket " + bucket_name + ": " + error.code);
             }
         }
     );
