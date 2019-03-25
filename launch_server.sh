@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
+# build the s3rver command
+COMMAND="s3rver --hostname 0.0.0.0 --port 5000 --directory /tmp"
+if [ -n ${CORS_CONF_PATH} ]
+then
+    COMMAND="$COMMAND --cors $CORS_CONF_PATH"
+fi
+COMMAND="$COMMAND &"
+
 # Launch the local S3 server
-s3rver --hostname 0.0.0.0 --port 5000 --directory /tmp &
+$COMMAND
 
 # Wait 2 seconds to give the server the time to be up
 sleep 2
