@@ -12,7 +12,9 @@ config.vm.define "s3" do |s3|
     d.image = "jean553/docker-s3-server-dev"
     d.env = {
       "S3_BUCKET_NAME" => "MyBucketName",
+      "CORS_CONF_PATH" => "config/cors-config.xml"
     }
   end
+  config.vm.synced_folder "config/", "/config"
 end
 ```
