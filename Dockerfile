@@ -5,4 +5,4 @@ RUN npm install aws-sdk
 WORKDIR /
 COPY CORS.xml /CORS.xml
 EXPOSE 5000
-CMD s3rver -a 0.0.0.0 --port 5000 --directory /tmp --configure-bucket "$S3_BUCKET_NAME" /CORS.xml
+CMD s3rver -a 0.0.0.0 --port 5000 --allow-mismatched-signatures --directory /tmp --configure-bucket "$S3_BUCKET_NAME" /CORS.xml
