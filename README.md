@@ -7,15 +7,28 @@ For example, if you want to use the S3 path-style address, set ``S3RVER_EXTRA_AR
 
 ## Usage with Vagrant
 
-Set the bucket name environment variable in your Vagrantfile.
+Build the container
 
-```ruby
-config.vm.define "s3" do |s3|
-  s3.vm.provider "docker" do |d|
-    d.image = "jean553/docker-s3-server-dev"
-    d.env = {
-      "S3_BUCKET_NAME" => "MyBucketName",
-    }
-  end
-end
+```
+vagrant up
+```
+
+your s3 developpement server is running on http://127.0.0.1:5000.
+
+The Default Bucket Name is `development_bucket`.
+
+You can change port and bucketName in the VagrantFile, and simply reload your container.
+
+```
+vagrant reload
+```
+
+
+If your client only supports signed requests, specify the credentials
+
+```
+{
+  accessKeyId: "S3RVER",
+  secretAccessKey: "S3RVER",
+}
 ```
