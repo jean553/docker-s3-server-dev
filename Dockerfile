@@ -1,6 +1,7 @@
 FROM mhart/alpine-node:latest
 RUN apk add --no-cache git
 RUN npm install -g s3rver@3.6.1
+WORKDIR /usr/app
 RUN npm install aws-sdk
 WORKDIR /
 COPY CORS.xml /CORS.xml
